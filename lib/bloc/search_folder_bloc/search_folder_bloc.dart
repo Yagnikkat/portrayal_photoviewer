@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:dartz/dartz.dart';
 import 'package:retake_photoviewer/_core/failure.dart';
+import 'package:retake_photoviewer/infrastructure/folder_dto.dart';
 import 'package:retake_photoviewer/repository/folder_repository.dart';
 
 import '../../_constants/common_methods.dart';
@@ -18,13 +19,16 @@ class SearchFolderBloc extends Bloc<SearchFolderEvent, SearchFolderState> {
       event.map(
           fetchingFolders: (e) {},
           folderFetched: (e) {},
-          selectFolder: (e) async* {
-            final getFolderDetail =
-                _folderRepository.selectUserPreferedFolders(image: e.image);
+          selectFolder: (e) {
+            final getFolderDetail = _folderRepository.selectUserPreferedFolders(
+                image: state.selectedImagePath);
 
-            yield getFolderDetail.fold(
+            emit(getFolderDetail.fold(
                 (l) => state.copyWith(failureOrSuccess: optionOf(left(l))),
-                (r) => state.copyWith());
+                (r) => state.copyWith(folderDTO: r)));
+          },
+          selectFolderPrefernce: (e) {
+            emit(state.copyWith(selectedImagePath: e.image));
           });
     });
   }

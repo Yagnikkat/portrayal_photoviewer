@@ -28,7 +28,7 @@ class FolderRepository {
           for (var fileDetail in result) {
             folderDetail.add(FolderDetail(
                 folderPath: fileDetail.path,
-                folderName: fileDetail.path.split('/').last));
+                folderName: fileDetail.path.split(':\$').last));
           }
           return right(FolderDTO(folderDetails: folderDetail));
         }
