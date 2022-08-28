@@ -12,8 +12,8 @@ Future<void> initializeWindowsOption() async {
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
-    center: true, 
-    minimumSize: Size(1200, 720),
+    center: true,
+    minimumSize: Size(600, 720),
     titleBarStyle: TitleBarStyle.normal,
   );
 
@@ -21,4 +21,4 @@ Future<void> initializeWindowsOption() async {
     await windowManager.show();
     await windowManager.focus();
   });
-} 
+}

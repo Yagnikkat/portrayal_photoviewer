@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:retake_photoviewer/_constants/common_methods.dart';
 import 'package:retake_photoviewer/_core/failure.dart';
@@ -27,10 +29,12 @@ class FolderRepository {
           List<FolderDetail> folderDetail = [];
           for (var fileDetail in result) {
             folderDetail.add(FolderDetail(
-                folderPath: fileDetail.path,
-                folderName: fileDetail.path.split(':\$').last));
+                folderPath: Directory.fromUri(fileDetail.uri).path,
+                folderName: fileDetail.path.split("\\").last.isNotEmpty
+                    ? fileDetail.path.split("\\").last
+                    : fileDetail.path));
           }
-          return right(FolderDTO(folderDetails: folderDetail));
+          return right(FolderDTO(folderDetails: folderDetail.toSet().toList()));
         }
       } catch (e) {
         return left(Failure.commonFailure());
@@ -39,7 +43,9 @@ class FolderRepository {
     return left(Failure.commonFailure());
   }
 
-  void saveSelectedFolders() {}
+  // Either<Failure,Unit> saveSelectedFolders({required List<FolderDetail> folderDetail}) {
+  //   re
+  // }
 
   void getSelectedFolders() {}
 }

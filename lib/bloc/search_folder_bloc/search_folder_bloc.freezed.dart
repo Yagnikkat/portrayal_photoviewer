@@ -21,6 +21,8 @@ mixin _$SearchFolderEvent {
     required TResult Function() fetchingFolders,
     required TResult Function(ImagePaths image) selectFolderPrefernce,
     required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
     required TResult Function() folderFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +31,7 @@ mixin _$SearchFolderEvent {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +40,7 @@ mixin _$SearchFolderEvent {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
     required TResult orElse(),
   }) =>
@@ -47,6 +51,8 @@ mixin _$SearchFolderEvent {
     required TResult Function(_SelectFolderPrefernce value)
         selectFolderPrefernce,
     required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
     required TResult Function(_FolderFetched value) folderFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +61,7 @@ mixin _$SearchFolderEvent {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +70,7 @@ mixin _$SearchFolderEvent {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
     required TResult orElse(),
   }) =>
@@ -130,6 +138,8 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     required TResult Function() fetchingFolders,
     required TResult Function(ImagePaths image) selectFolderPrefernce,
     required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
     required TResult Function() folderFetched,
   }) {
     return fetchingFolders();
@@ -141,6 +151,7 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
   }) {
     return fetchingFolders?.call();
@@ -152,6 +163,7 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
     required TResult orElse(),
   }) {
@@ -168,6 +180,8 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     required TResult Function(_SelectFolderPrefernce value)
         selectFolderPrefernce,
     required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
     required TResult Function(_FolderFetched value) folderFetched,
   }) {
     return fetchingFolders(this);
@@ -179,6 +193,7 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
   }) {
     return fetchingFolders?.call(this);
@@ -190,6 +205,7 @@ class _$_FetchingOverviewData implements _FetchingOverviewData {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
     required TResult orElse(),
   }) {
@@ -274,6 +290,8 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     required TResult Function() fetchingFolders,
     required TResult Function(ImagePaths image) selectFolderPrefernce,
     required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
     required TResult Function() folderFetched,
   }) {
     return selectFolderPrefernce(image);
@@ -285,6 +303,7 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
   }) {
     return selectFolderPrefernce?.call(image);
@@ -296,6 +315,7 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
     required TResult orElse(),
   }) {
@@ -312,6 +332,8 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     required TResult Function(_SelectFolderPrefernce value)
         selectFolderPrefernce,
     required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
     required TResult Function(_FolderFetched value) folderFetched,
   }) {
     return selectFolderPrefernce(this);
@@ -323,6 +345,7 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
   }) {
     return selectFolderPrefernce?.call(this);
@@ -334,6 +357,7 @@ class _$_SelectFolderPrefernce implements _SelectFolderPrefernce {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
     required TResult orElse(),
   }) {
@@ -398,6 +422,8 @@ class _$_selectFolder implements _selectFolder {
     required TResult Function() fetchingFolders,
     required TResult Function(ImagePaths image) selectFolderPrefernce,
     required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
     required TResult Function() folderFetched,
   }) {
     return selectFolder();
@@ -409,6 +435,7 @@ class _$_selectFolder implements _selectFolder {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
   }) {
     return selectFolder?.call();
@@ -420,6 +447,7 @@ class _$_selectFolder implements _selectFolder {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
     required TResult orElse(),
   }) {
@@ -436,6 +464,8 @@ class _$_selectFolder implements _selectFolder {
     required TResult Function(_SelectFolderPrefernce value)
         selectFolderPrefernce,
     required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
     required TResult Function(_FolderFetched value) folderFetched,
   }) {
     return selectFolder(this);
@@ -447,6 +477,7 @@ class _$_selectFolder implements _selectFolder {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
   }) {
     return selectFolder?.call(this);
@@ -458,6 +489,7 @@ class _$_selectFolder implements _selectFolder {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
     required TResult orElse(),
   }) {
@@ -470,6 +502,174 @@ class _$_selectFolder implements _selectFolder {
 
 abstract class _selectFolder implements SearchFolderEvent {
   const factory _selectFolder() = _$_selectFolder;
+}
+
+/// @nodoc
+abstract class _$$_RemoveSelectedFoldersCopyWith<$Res> {
+  factory _$$_RemoveSelectedFoldersCopyWith(_$_RemoveSelectedFolders value,
+          $Res Function(_$_RemoveSelectedFolders) then) =
+      __$$_RemoveSelectedFoldersCopyWithImpl<$Res>;
+  $Res call({FolderDetail selectedObject});
+
+  $FolderDetailCopyWith<$Res> get selectedObject;
+}
+
+/// @nodoc
+class __$$_RemoveSelectedFoldersCopyWithImpl<$Res>
+    extends _$SearchFolderEventCopyWithImpl<$Res>
+    implements _$$_RemoveSelectedFoldersCopyWith<$Res> {
+  __$$_RemoveSelectedFoldersCopyWithImpl(_$_RemoveSelectedFolders _value,
+      $Res Function(_$_RemoveSelectedFolders) _then)
+      : super(_value, (v) => _then(v as _$_RemoveSelectedFolders));
+
+  @override
+  _$_RemoveSelectedFolders get _value =>
+      super._value as _$_RemoveSelectedFolders;
+
+  @override
+  $Res call({
+    Object? selectedObject = freezed,
+  }) {
+    return _then(_$_RemoveSelectedFolders(
+      selectedObject: selectedObject == freezed
+          ? _value.selectedObject
+          : selectedObject // ignore: cast_nullable_to_non_nullable
+              as FolderDetail,
+    ));
+  }
+
+  @override
+  $FolderDetailCopyWith<$Res> get selectedObject {
+    return $FolderDetailCopyWith<$Res>(_value.selectedObject, (value) {
+      return _then(_value.copyWith(selectedObject: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveSelectedFolders implements _RemoveSelectedFolders {
+  const _$_RemoveSelectedFolders({required this.selectedObject});
+
+  @override
+  final FolderDetail selectedObject;
+
+  @override
+  String toString() {
+    return 'SearchFolderEvent.removeSelectedFolders(selectedObject: $selectedObject)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveSelectedFolders &&
+            const DeepCollectionEquality()
+                .equals(other.selectedObject, selectedObject));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(selectedObject));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RemoveSelectedFoldersCopyWith<_$_RemoveSelectedFolders> get copyWith =>
+      __$$_RemoveSelectedFoldersCopyWithImpl<_$_RemoveSelectedFolders>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetchingFolders,
+    required TResult Function(ImagePaths image) selectFolderPrefernce,
+    required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
+    required TResult Function() folderFetched,
+  }) {
+    return removeSelectedFolders(selectedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? fetchingFolders,
+    TResult Function(ImagePaths image)? selectFolderPrefernce,
+    TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
+    TResult Function()? folderFetched,
+  }) {
+    return removeSelectedFolders?.call(selectedObject);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetchingFolders,
+    TResult Function(ImagePaths image)? selectFolderPrefernce,
+    TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
+    TResult Function()? folderFetched,
+    required TResult orElse(),
+  }) {
+    if (removeSelectedFolders != null) {
+      return removeSelectedFolders(selectedObject);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchingOverviewData value) fetchingFolders,
+    required TResult Function(_SelectFolderPrefernce value)
+        selectFolderPrefernce,
+    required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
+    required TResult Function(_FolderFetched value) folderFetched,
+  }) {
+    return removeSelectedFolders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_FetchingOverviewData value)? fetchingFolders,
+    TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
+    TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
+    TResult Function(_FolderFetched value)? folderFetched,
+  }) {
+    return removeSelectedFolders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchingOverviewData value)? fetchingFolders,
+    TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
+    TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
+    TResult Function(_FolderFetched value)? folderFetched,
+    required TResult orElse(),
+  }) {
+    if (removeSelectedFolders != null) {
+      return removeSelectedFolders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveSelectedFolders implements SearchFolderEvent {
+  const factory _RemoveSelectedFolders(
+      {required final FolderDetail selectedObject}) = _$_RemoveSelectedFolders;
+
+  FolderDetail get selectedObject;
+  @JsonKey(ignore: true)
+  _$$_RemoveSelectedFoldersCopyWith<_$_RemoveSelectedFolders> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -516,6 +716,8 @@ class _$_FolderFetched implements _FolderFetched {
     required TResult Function() fetchingFolders,
     required TResult Function(ImagePaths image) selectFolderPrefernce,
     required TResult Function() selectFolder,
+    required TResult Function(FolderDetail selectedObject)
+        removeSelectedFolders,
     required TResult Function() folderFetched,
   }) {
     return folderFetched();
@@ -527,6 +729,7 @@ class _$_FolderFetched implements _FolderFetched {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
   }) {
     return folderFetched?.call();
@@ -538,6 +741,7 @@ class _$_FolderFetched implements _FolderFetched {
     TResult Function()? fetchingFolders,
     TResult Function(ImagePaths image)? selectFolderPrefernce,
     TResult Function()? selectFolder,
+    TResult Function(FolderDetail selectedObject)? removeSelectedFolders,
     TResult Function()? folderFetched,
     required TResult orElse(),
   }) {
@@ -554,6 +758,8 @@ class _$_FolderFetched implements _FolderFetched {
     required TResult Function(_SelectFolderPrefernce value)
         selectFolderPrefernce,
     required TResult Function(_selectFolder value) selectFolder,
+    required TResult Function(_RemoveSelectedFolders value)
+        removeSelectedFolders,
     required TResult Function(_FolderFetched value) folderFetched,
   }) {
     return folderFetched(this);
@@ -565,6 +771,7 @@ class _$_FolderFetched implements _FolderFetched {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
   }) {
     return folderFetched?.call(this);
@@ -576,6 +783,7 @@ class _$_FolderFetched implements _FolderFetched {
     TResult Function(_FetchingOverviewData value)? fetchingFolders,
     TResult Function(_SelectFolderPrefernce value)? selectFolderPrefernce,
     TResult Function(_selectFolder value)? selectFolder,
+    TResult Function(_RemoveSelectedFolders value)? removeSelectedFolders,
     TResult Function(_FolderFetched value)? folderFetched,
     required TResult orElse(),
   }) {

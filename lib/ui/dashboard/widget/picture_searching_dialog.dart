@@ -7,6 +7,7 @@ import 'package:retake_photoviewer/_constants/constatnt_names.dart';
 import 'package:retake_photoviewer/_constants/theme_config.dart';
 import 'package:retake_photoviewer/app.dart';
 import 'package:retake_photoviewer/bloc/search_folder_bloc/search_folder_bloc.dart';
+import 'package:retake_photoviewer/ui/dashboard/widget/folder_item.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../../../_constants/common_methods.dart';
@@ -49,9 +50,9 @@ class _FolderSelectionDialogUIState extends State<FolderSelectionDialogUI>
         return Center(
           child: Container(
             height: utils.height * .6,
-            width: utils.width * .5,
+            width: utils.width * .52,
             decoration: BoxDecoration(
-                color: Colors.grey.shade200,
+                color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(width: 0.5, color: ThemeConfig.primaryDark)),
             child: Column(
@@ -67,11 +68,39 @@ class _FolderSelectionDialogUIState extends State<FolderSelectionDialogUI>
                       top: Radius.circular(30),
                     ),
                   ),
+                  actions: [
+                    if (state.folderDTO.folderDetails.isNotEmpty)
+                      Tooltip(
+                        message: 'Add folders',
+                        triggerMode: TooltipTriggerMode.manual,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20),
+                          child: IconButton(
+                              onPressed: () {
+                                context.read<SearchFolderBloc>().add(
+                                    const SearchFolderEvent.selectFolder());
+                              },
+                              icon: Icon(
+                                Icons.create_new_folder,
+                                color: ThemeConfig.whiteColor,
+                                size: 30,
+                                shadows: [
+                                  Shadow(
+                                      offset: const Offset(1, 1),
+                                      color: Colors.grey.shade600)
+                                ],
+                              )),
+                        ),
+                      )
+                  ],
                 ),
-                if (state.folderDTO.folderDetails.isEmpty)
-                  ..._folderSelectionUI(state)
-                else
-                  ..._folderListView(state)
+                if (!state.isFetchingImage) ...[
+                  if (state.folderDTO.folderDetails.isEmpty)
+                    ..._folderSelectionUI(state)
+                  else
+                    ..._folderListView(state)
+                ] else
+                  const Center(child: CupertinoActivityIndicator())
               ],
             ),
           ),
@@ -115,61 +144,64 @@ class _FolderSelectionDialogUIState extends State<FolderSelectionDialogUI>
         ),
       ),
       const Spacer(),
-      Container(
-        alignment: Alignment.center,
-        // height: 40,
-        width: utils.width,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: CupertinoButton(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 20),
-          color: ThemeConfig.secondaryColor,
-          child: TitleText(
-            'Continue',
-            color: Colors.grey.shade800,
-            fontSize: 14,
-          ),
-          onPressed: () {
-            context
-                .read<SearchFolderBloc>()
-                .add(const SearchFolderEvent.selectFolder());
-          },
-        ),
-      ),
-      const SizedBox(height: 20)
+
+      _bottomButton(
+        onPressed: () {
+          context
+              .read<SearchFolderBloc>()
+              .add(const SearchFolderEvent.selectFolder());
+        },
+      )
+      // Container(
+      //   alignment: Alignment.center,
+      //   // height: 40,
+      //   width: utils.width,
+      //   padding: const EdgeInsets.symmetric(horizontal: 20),
+      //   child: CupertinoButton(
+      //     padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 20),
+      //     color: ThemeConfig.secondaryColor,
+      //     child: TitleText(
+      //       'Continue',
+      //       color: Colors.grey.shade800,
+      //       fontSize: 14,
+      //     ),
+      //     onPressed: () {
+      //      },
+      //   ),
+      // ),
     ];
   }
 
   List<Widget> _folderListView(SearchFolderState state) {
     return [
-      const SizedBox(height: 10),
       Expanded(
           child: GridView.builder(
               itemCount: state.folderDTO.folderDetails.length,
               padding: const EdgeInsets.all(20),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 5 / 4,
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 6,
-                  crossAxisSpacing: 6),
+                  childAspectRatio: 1 / 1,
+                  crossAxisCount: 6,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8),
               itemBuilder: (BuildContext context, int index) {
                 final folderDetail = state.folderDTO.folderDetails[index];
-                return SizedBox(
-                  height: 40,
-                  width: 80,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.folder,
-                        color: ThemeConfig.primaryColor,
-                        size: 50,
-                      ),
-                      const SizedBox(height: 8),
-                      SubTitleText(folderDetail.folderName)
-                    ],
-                  ),
+                return FolderItem(
+                  folderName: folderDetail.folderName,
+                  onPressed: () {
+                    context.read<SearchFolderBloc>().add(
+                        SearchFolderEvent.removeSelectedFolders(
+                            selectedObject: folderDetail));
+                  },
                 );
-              }))
+              })),
+      // const Divider(
+      //   height: 4,
+      //   thickness: 2,
+      // ),
+      const SizedBox(height: 6),
+      _bottomButton(
+        onPressed: () {},
+      ),
     ];
   }
 
@@ -177,6 +209,36 @@ class _FolderSelectionDialogUIState extends State<FolderSelectionDialogUI>
     context
         .read<SearchFolderBloc>()
         .add(SearchFolderEvent.selectFolderPrefernce(image: value));
+  }
+
+  Widget _bottomButton({
+    void Function()? onPressed,
+  }) {
+    return Container(
+      height: 50,
+      margin: const EdgeInsets.only(bottom: 10),
+      // decoration: BoxDecoration(
+      //   color: Colors.grey.shade300,
+      //   borderRadius: const BorderRadius.only(
+      //       bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
+      // ),
+      alignment: Alignment.center,
+      // height: 40,
+      width: utils.width,
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: MaterialButton(
+          height: 50,
+          color: ThemeConfig.secondaryColor,
+          // hoverColor: Colors.white24,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 20),
+          onPressed: onPressed,
+          child: const TitleText(
+            'Continue',
+            color: ThemeConfig.whiteColor,
+          )),
+    );
   }
 
   @override

@@ -38,6 +38,7 @@ dependencies:
   win32: 2.2.10
   window_manager: ^0.2.6
   analyzer: ^4.6.0
+  
 
 dev_dependencies:
   build_runner: ^2.2.0

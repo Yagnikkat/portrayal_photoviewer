@@ -20,15 +20,44 @@ class SearchFolderBloc extends Bloc<SearchFolderEvent, SearchFolderState> {
           fetchingFolders: (e) {},
           folderFetched: (e) {},
           selectFolder: (e) {
+            emit(state.copyWith(isFetchingImage: true));
             final getFolderDetail = _folderRepository.selectUserPreferedFolders(
                 image: state.selectedImagePath);
 
             emit(getFolderDetail.fold(
-                (l) => state.copyWith(failureOrSuccess: optionOf(left(l))),
-                (r) => state.copyWith(folderDTO: r)));
+                (l) => state.copyWith(
+                    isFetchingImage: false,
+                    failureOrSuccess: optionOf(left(l))), (r) {
+              List<FolderDetail> newList = [];
+              for (var element in r.folderDetails) {
+                newList.add(element);
+              }
+              if (state.folderDTO.folderDetails.isNotEmpty) {
+                for (var folderDetail in state.folderDTO.folderDetails) {
+                  newList.add(folderDetail);
+                }
+              }
+
+              return state.copyWith(
+                  isFetchingImage: false,
+                  folderDTO:
+                      FolderDTO(folderDetails: newList.toSet().toList()));
+            }));
           },
           selectFolderPrefernce: (e) {
             emit(state.copyWith(selectedImagePath: e.image));
+          },
+          removeSelectedFolders: (e) {
+            List<FolderDetail> newList = [];
+            for (var element in state.folderDTO.folderDetails) {
+              newList.add(element);
+            }
+            newList.removeWhere(
+                (element) => element.folderPath == e.selectedObject.folderPath);
+
+            emit(state.copyWith(
+                isFetchingImage: false,
+                folderDTO: FolderDTO(folderDetails: newList.toSet().toList())));
           });
     });
   }
